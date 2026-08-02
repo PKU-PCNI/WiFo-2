@@ -3,7 +3,25 @@
 Inference code for WiFo-2. This release evaluates released WiFo-2 checkpoints
 on zero-shot wireless channel tasks; it does not include model training code.
 
-## Supported tasks
+[📄 Paper](https://arxiv.org/abs/2511.22222) ·
+[🤗 Model](https://huggingface.co/pku-pcni-lab/WiFo-2) ·
+[🤗 Dataset](https://huggingface.co/datasets/pku-pcni-lab/WiFo-2)
+
+> [!IMPORTANT]
+> WiFo-2 is being open-sourced in stages. We are starting with inference code,
+> a lightweight model checkpoint, and zero-shot evaluation data, and will
+> progressively release additional models, code, and supporting resources. Our
+> final goal is the complete open-source release of WiFo-2.
+
+## 🗓️ Release roadmap
+
+| Release date | Status | Open-source content |
+| --- | --- | --- |
+| August 2, 2026 | ✅ Released | Inference code, Tiny-Dense model checkpoint, and test splits of the released zero-shot datasets |
+| September 2026 | 🕒 Expected | Small-Dense, Little-Dense, and Base-Dense model checkpoints |
+| To be announced | 📋 Planned | Remaining WiFo-2 code, checkpoints, and supporting resources toward the complete open-source release |
+
+## ✨ Supported tasks
 
 - Frequency-domain channel prediction (`fre`)
 - Time-domain channel prediction (`temporal`)
@@ -12,7 +30,7 @@ on zero-shot wireless channel tasks; it does not include model training code.
 The Tiny-Dense checkpoint and selected zero-shot test subsets are hosted on
 Hugging Face. No model weights or datasets are tracked by Git.
 
-## Released assets
+## 📦 Released assets
 
 - [Tiny-Dense checkpoint](https://huggingface.co/pku-pcni-lab/WiFo-2/blob/main/Tiny-dense/model_best.pkl)
 - [Zero-shot test datasets](https://huggingface.co/datasets/pku-pcni-lab/WiFo-2/tree/main)
@@ -24,7 +42,7 @@ hf download pku-pcni-lab/WiFo-2 Tiny-dense/model_best.pkl --local-dir ./experime
 hf download pku-pcni-lab/WiFo-2 --repo-type dataset --local-dir ./dataset
 ```
 
-## Setup
+## 🛠️ Setup
 
 Python 3.10 or later is recommended. Install the dependencies in your own
 environment:
@@ -44,7 +62,7 @@ WiFo-2/
     └── Tiny-dense/model_best.pkl
 ```
 
-## Inference
+## 🚀 Inference
 
 Run the released Tiny-Dense model on all supported masks for `D17`:
 
@@ -71,7 +89,7 @@ The default model selection is Tiny-Dense (`--size tinypro --MoE False`). Match
 `--size`, `--MoE`, `--t_patch_size`, `--patch_size`, and `--pos_emb` to the
 checkpoint being evaluated.
 
-## Dataset name mapping
+## 🗂️ Dataset name mapping
 
 The directory names in the released files differ from the names used in the
 paper. Use the following mapping when reproducing the reported results.
@@ -94,7 +112,7 @@ paper. Use the following mapping when reproducing the reported results.
 | `RM_070704_CE` | `RMF9` |
 | `O1droneCE1` | `DEF3` |
 
-## Citation
+## 📝 Citation
 
 If you find this repository useful, please cite:
 
