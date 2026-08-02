@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.idea/
+.vscode/
+
+# Downloaded release assets
+dataset/*/data.pt
+experiments/**/*.pkl
+experiments/**/*.pt
+experiments/**/*.pth
+
+# Local outputs
+logs/
+results/
+*.mat

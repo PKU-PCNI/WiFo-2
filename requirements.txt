@@ -1,0 +1,6 @@
+einops
+joblib
+numpy
+scipy
+timm
+torch
