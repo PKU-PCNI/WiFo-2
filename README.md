@@ -7,6 +7,13 @@ on zero-shot wireless channel tasks; it does not include model training code.
 [🤗 Model](https://huggingface.co/pku-pcni-lab/WiFo-2) ·
 [🤗 Dataset](https://huggingface.co/datasets/pku-pcni-lab/WiFo-2)
 
+> [!TIP]
+> **🏆 Join SoM Challenge 2026 — Early Access to Full Dataset Splits**
+>
+> To encourage participation in [SoM Challenge 2026](https://competition.aiforgood.itu.int/web/challenges/challenge-page/494/overview), we have made the **train/val/test splits of the released zero-shot datasets** available early to registered participants in our [competition dataset repository](https://huggingface.co/datasets/pku-pcni-lab/WiFo-2-SoM-Challenge).
+>
+> **Register for the challenge to obtain the Dataset Access Password**, then submit an access request on the dataset page with your team name, registration email, institution, and the provided password. The organizers will approve access after verifying your registration. Redistribution or sharing of this dataset is strictly prohibited.
+
 > [!IMPORTANT]
 > WiFo-2 is being open-sourced in stages. We have released inference code,
 > four Dense model checkpoints, and zero-shot evaluation data, and will
