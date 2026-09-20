@@ -8,8 +8,8 @@ on zero-shot wireless channel tasks; it does not include model training code.
 [🤗 Dataset](https://huggingface.co/datasets/pku-pcni-lab/WiFo-2)
 
 > [!IMPORTANT]
-> WiFo-2 is being open-sourced in stages. We are starting with inference code,
-> a lightweight model checkpoint, and zero-shot evaluation data, and will
+> WiFo-2 is being open-sourced in stages. We have released inference code,
+> four Dense model checkpoints, and zero-shot evaluation data, and will
 > progressively release additional models, code, and supporting resources. Our
 > final goal is the complete open-source release of WiFo-2.
 
@@ -18,7 +18,7 @@ on zero-shot wireless channel tasks; it does not include model training code.
 | Release date | Status | Open-source content |
 | --- | --- | --- |
 | August 2, 2026 | ✅ Released | Inference code, Tiny-Dense model checkpoint, and test splits of the released zero-shot datasets |
-| September 2026 | 🕒 Expected | Small-Dense, Little-Dense, and Base-Dense model checkpoints |
+| September 20, 2026 | ✅ Released | Small-Dense, Little-Dense, and Base-Dense model checkpoints |
 | To be announced | 📋 Planned | Remaining WiFo-2 code, checkpoints, and supporting resources toward the complete open-source release |
 
 ## ✨ Supported tasks
@@ -27,18 +27,27 @@ on zero-shot wireless channel tasks; it does not include model training code.
 - Time-domain channel prediction (`temporal`)
 - Channel estimation (`CE`)
 
-The Tiny-Dense checkpoint and selected zero-shot test subsets are hosted on
+The Tiny-Dense, Little-Dense, Small-Dense, and Base-Dense checkpoints and selected zero-shot test subsets are hosted on
 Hugging Face. No model weights or datasets are tracked by Git.
 
 ## 📦 Released assets
 
-- [Tiny-Dense checkpoint](https://huggingface.co/pku-pcni-lab/WiFo-2/blob/main/Tiny-dense/model_best.pkl)
+| Model | Checkpoint | Inference arguments |
+| --- | --- | --- |
+| Tiny-Dense | [Tiny-dense/model_best.pkl](https://huggingface.co/pku-pcni-lab/WiFo-2/blob/main/Tiny-dense/model_best.pkl) | `--size tinypro --MoE False` |
+| Little-Dense | [Little-dense/model_best.pkl](https://huggingface.co/pku-pcni-lab/WiFo-2/blob/main/Little-dense/model_best.pkl) | `--size littlepro --MoE False` |
+| Small-Dense | [Small-dense/model_best.pkl](https://huggingface.co/pku-pcni-lab/WiFo-2/blob/main/Small-dense/model_best.pkl) | `--size smallpro --MoE False` |
+| Base-Dense | [Base-dense/model_best.pkl](https://huggingface.co/pku-pcni-lab/WiFo-2/blob/main/Base-dense/model_best.pkl) | `--size basepro1 --MoE False` |
+
 - [Zero-shot test datasets](https://huggingface.co/datasets/pku-pcni-lab/WiFo-2/tree/main)
 
-Download the checkpoint and datasets with the Hugging Face CLI:
+Download the desired checkpoints and datasets with the Hugging Face CLI:
 
 ```bash
 hf download pku-pcni-lab/WiFo-2 Tiny-dense/model_best.pkl --local-dir ./experiments
+hf download pku-pcni-lab/WiFo-2 Little-dense/model_best.pkl --local-dir ./experiments
+hf download pku-pcni-lab/WiFo-2 Small-dense/model_best.pkl --local-dir ./experiments
+hf download pku-pcni-lab/WiFo-2 Base-dense/model_best.pkl --local-dir ./experiments
 hf download pku-pcni-lab/WiFo-2 --repo-type dataset --local-dir ./dataset
 ```
 
@@ -59,7 +68,10 @@ WiFo-2/
 │   ├── D17/X_test.pt
 │   └── D17CE/X_test.pt
 └── experiments/
-    └── Tiny-dense/model_best.pkl
+    ├── Tiny-dense/model_best.pkl
+    ├── Little-dense/model_best.pkl
+    ├── Small-dense/model_best.pkl
+    └── Base-dense/model_best.pkl
 ```
 
 ## 🚀 Inference
@@ -69,6 +81,17 @@ Run the released Tiny-Dense model on all supported masks for `D17`:
 ```bash
 python main.py --device_id 0 --task recovery --size tinypro --MoE False --mask_strategy_random batch --dataset D17 --data_root ./dataset --file_load_path ./experiments/Tiny-dense/model_best.pkl --few_ratio 0.0 --t_patch_size 4 --patch_size 4 --batch_size 16 --pos_emb SinCos_3D
 ```
+
+To use another Dense model, change both `--size` and `--file_load_path`
+according to the checkpoint table above, keeping `--MoE False`.
+For example, run Base-Dense with:
+
+```bash
+python main.py --device_id 0 --task recovery --size basepro1 --MoE False --mask_strategy_random batch --dataset D17 --data_root ./dataset --file_load_path ./experiments/Base-dense/model_best.pkl --few_ratio 0.0 --t_patch_size 4 --patch_size 4 --batch_size 16 --pos_emb SinCos_3D
+```
+
+Base-Dense uses `--size basepro1` (including the trailing `1`). Reduce
+`--batch_size` if the selected model exceeds your GPU memory.
 
 For a non-CE dataset, `--mask_strategy_random batch` evaluates the published
 random recovery, time-domain prediction, and frequency-domain prediction masks.
