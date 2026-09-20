@@ -3,7 +3,7 @@
 Inference code for WiFo-2. This release evaluates released WiFo-2 checkpoints
 on zero-shot wireless channel tasks; it does not include model training code.
 
-[📄 Paper](https://arxiv.org/abs/2511.22222) ·
+[📄 Paper](https://doi.org/10.1093/nsr/nwag500) ·
 [🤗 Model](https://huggingface.co/pku-pcni-lab/WiFo-2) ·
 [🤗 Dataset](https://huggingface.co/datasets/pku-pcni-lab/WiFo-2)
 
@@ -117,15 +117,16 @@ paper. Use the following mapping when reproducing the reported results.
 If you find this repository useful, please cite:
 
 ```bibtex
-@article{liu2025wifo2,
+@article{liu2026wifo2,
   title   = {{WiFo-2}: A Generalist Foundation Model Unifies Heterogeneous Wireless System Design},
   author  = {Liu, Boxun and Liu, Xuanyu and Gao, Shijian and Cai, Xuesong and Cheng, Xiang and Yang, Liuqing},
-  journal = {arXiv preprint arXiv:2511.22222},
-  year    = {2025},
-  doi     = {10.48550/arXiv.2511.22222},
-  url     = {https://arxiv.org/abs/2511.22222}
+  journal = {National Science Review},
+  pages   = {nwag500},
+  year    = {2026},
+  doi     = {10.1093/nsr/nwag500},
+  url     = {https://doi.org/10.1093/nsr/nwag500}
 }
 ```
 
-Paper: [WiFo-2: a generalist foundation model unifies heterogeneous wireless
-system design](https://arxiv.org/abs/2511.22222)
+Paper: [National Science Review](https://doi.org/10.1093/nsr/nwag500) ·
+[arXiv:2511.22222](https://arxiv.org/abs/2511.22222)
